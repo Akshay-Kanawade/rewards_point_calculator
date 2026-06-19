@@ -46,7 +46,7 @@ This is a fully functional React rewards program that demonstrates:
 ## Project Structure
 
 ```
-rewards/
+rewards_point_calculator/
 ├── src/
 │   ├── components/
 │   │   ├── LoadingSpinner.js         # Loading indicator component
@@ -84,13 +84,18 @@ rewards/
 
 1. **Navigate to the project**
    ```bash
-   cd rewards
+   cd rewards_point_calculator
    ```
 
 2. **Install dependencies** (if not already installed)
    ```bash
    npm install
    ```
+
+  ** Mock data generation : **
+    ```bash
+       node src/utils/generateTransactions.js
+    ```
 
 3. **Start the development server**
    ```bash
@@ -236,7 +241,7 @@ The application includes comprehensive Jest tests for:
 
 ```bash
 # Run all tests in watch mode
-npm test
+npm run test
 ![testresult](image-1.png)
 
 # Run specific test file
@@ -405,7 +410,6 @@ npm run build
 
 This creates an optimized build in the `build/` directory.
 
-UI : [Rewards App](public/RewardsApp.pdf)
 ## Technologies Used
 
 - **React 19.2.7**: UI library
