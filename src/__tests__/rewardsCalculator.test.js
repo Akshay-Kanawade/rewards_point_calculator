@@ -40,19 +40,16 @@ describe('rewardsCalculator', () => {
       expect(calculateRewardPoints(1000)).toBe(50 + 2 * 900); // 1850
     });
 
-    it('should throw error for invalid input', () => {
-      expect(() => calculateRewardPoints(null)).toThrow(
-        'Purchase amount must be a valid non-negative number'
-      );
+   it('should throw error for invalid input', () => {
+  expect(() => calculateRewardPoints(null))
+    .toThrow('Purchase amount must be a valid non-negative number');
 
-      expect(() => calculateRewardPoints(undefined)).toThrow(
-        'Purchase amount must be a valid non-negative number'
-      );
+  expect(() => calculateRewardPoints(undefined))
+    .toThrow('Purchase amount must be a valid non-negative number');
 
-      expect(() => calculateRewardPoints('not a number')).toThrow(
-        'Purchase amount must be a valid non-negative number'
-      );
-    });
+  expect(() => calculateRewardPoints('not a number'))
+    .toThrow('Purchase amount must be a valid non-negative number');
+});
   });
 
   describe('aggregatePointsByCustomer', () => {

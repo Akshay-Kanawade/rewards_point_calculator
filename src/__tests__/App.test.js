@@ -14,7 +14,7 @@ jest.mock('../utils/apiSimulator.js', () => ({
 }));
 
 // Mock heavy child components
-jest.mock('../components/Header.js', () => (props) => (
+jest.mock('../components/common/Header.js', () => (props) => (
   <div>
     <button onClick={() => props.handleMonthChange('2026-06')}>
       Change Month
@@ -22,13 +22,12 @@ jest.mock('../components/Header.js', () => (props) => (
   </div>
 ));
 
-jest.mock('../components/StatCard.js', () => ({ label, value }) => (
-  <div>
-    {label}:{value}
-  </div>
+jest.mock('../components/common/StatCard.js', () => ({ label, value }) => (
+  <div>{label}:{value}</div>
 ));
 
-jest.mock('../components/Footer.js', () => () => <div>Footer</div>);
+jest.mock('../components/common/Footer.js', () => () => <div>Footer</div>);
+
 
 describe('App Component', () => {
   beforeEach(() => {
@@ -47,6 +46,7 @@ describe('App Component', () => {
     });
   });
 
+  
   it('should retry after API failure and load data successfully', async () => {
     fetchTransactionData
       .mockRejectedValueOnce(new Error('Network error')) // first fail
@@ -54,8 +54,7 @@ describe('App Component', () => {
         {
           id: '1',
           customerId: 'C1',
-          firstName: 'John',
-          lastName: 'Doe',
+          customerName: 'John',
           purchaseDate: new Date(),
           productName: 'Laptop',
           price: 100,
@@ -77,19 +76,53 @@ describe('App Component', () => {
     await waitFor(() => {
       expect(fetchTransactionData).toHaveBeenCalledTimes(2);
       expect(screen.getByText(/Total Transactions/i)).toBeInTheDocument();
-      expect(
-        screen.getAllByText(/Total Reward Points/i).length
-      ).toBeGreaterThan(0);
+      expect(screen.getAllByText(/Total Reward Points/i).length).toBeGreaterThan(0);
     });
   });
+
+  // it('should update month filter when month is changed', async () => {
+  //   fetchTransactionData.mockResolvedValue([
+  //     {
+  //       id: '1',
+  //       customerId: 'C1',
+  //       customerName: 'John',
+  //       purchaseDate: new Date('2026-06-10'),
+  //       productName: 'Laptop',
+  //       price: 100,
+  //       rewardPoints: 50,
+  //     },
+  //     {
+  //       id: '2',
+  //       customerId: 'C1',
+  //       customerName: 'John',
+  //       purchaseDate: new Date('2026-05-10'),
+  //       productName: 'Mouse',
+  //       price: 50,
+  //       rewardPoints: 20,
+  //     },
+  //   ]);
+
+  //   render(<App />);
+
+  //   await waitFor(() => {
+  //     expect(screen.getByText(/Total Transactions/i)).toBeInTheDocument();
+  //   });
+
+  //   // triggers handleMonthChange (line 79)
+  //   fireEvent.click(screen.getByText('Change Month'));
+
+  //   // ensures filteredTransactions recomputed (useMemo path)
+  //   await waitFor(() => {
+  //     expect(fetchTransactionData).toHaveBeenCalledTimes(1);
+  //   });
+  // });
 
   it('should render full dashboard with derived data', async () => {
     fetchTransactionData.mockResolvedValue([
       {
         id: '1',
         customerId: 'C1',
-        firstName: 'John',
-        lastName: 'Doe',
+        customerName: 'John',
         purchaseDate: new Date('2026-06-01'),
         productName: 'Laptop',
         price: 100,
@@ -103,9 +136,7 @@ describe('App Component', () => {
       // stat cards (statsData)
       expect(screen.getByText(/Total Transactions/i)).toBeInTheDocument();
       expect(screen.getByText(/Total Sales/i)).toBeInTheDocument();
-      expect(
-        screen.getAllByText(/Total Reward Points/i).length
-      ).toBeGreaterThan(0);
+      expect(screen.getAllByText(/Total Reward Points/i).length).toBeGreaterThan(0);
 
       // derived tables rendered
       expect(screen.getByText(/Footer/i)).toBeInTheDocument();
@@ -117,8 +148,7 @@ describe('App Component', () => {
       {
         id: '1',
         customerId: 'C1',
-        firstName: 'John',
-        lastName: 'Doe',
+        customerName: 'John',
         purchaseDate: new Date('2026-06-01'),
         productName: 'Laptop',
         price: 100,
@@ -135,8 +165,6 @@ describe('App Component', () => {
 
     // 🔥 THIS forces statsData usage path (line 128)
     expect(screen.getByText(/Total Sales/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/Total Reward Points/i).length).toBeGreaterThan(
-      0
-    );
+     expect(screen.getAllByText(/Total Reward Points/i).length).toBeGreaterThan(0);
   });
 });

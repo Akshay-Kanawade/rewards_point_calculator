@@ -112,22 +112,22 @@ describe('dataAggregator', () => {
   });
 
   describe('edge cases / invalid inputs', () => {
-    it('should return empty array for invalid input in sortTransactionsByDateDesc', () => {
-      expect(sortTransactionsByDateDesc(null)).toEqual([]);
-      expect(sortTransactionsByDateDesc(undefined)).toEqual([]);
-      expect(sortTransactionsByDateDesc('invalid')).toEqual([]);
-    });
-
-    it('should return empty array for invalid input in sortByPointsDesc', () => {
-      expect(sortByPointsDesc(null)).toEqual([]);
-      expect(sortByPointsDesc(undefined)).toEqual([]);
-      expect(sortByPointsDesc('wrong')).toEqual([]);
-    });
-
-    it('should return empty array for invalid input in sortTransactionsByDate', () => {
-      expect(sortTransactionsByDate(null)).toEqual([]);
-      expect(sortTransactionsByDate(undefined)).toEqual([]);
-      expect(sortTransactionsByDate(123)).toEqual([]);
-    });
+  it('should return empty array for invalid input in sortTransactionsByDateDesc', () => {
+    expect(sortTransactionsByDateDesc(null)).toEqual([]);
+    expect(sortTransactionsByDateDesc(undefined)).toEqual([]);
+    expect(sortTransactionsByDateDesc('invalid')).toEqual([]);
   });
+
+  it('should return empty array for invalid input in sortByPointsDesc', () => {
+    expect(sortByPointsDesc(null)).toEqual([]);
+    expect(sortByPointsDesc(undefined)).toEqual([]);
+    expect(sortByPointsDesc('wrong')).toEqual([]);
+  });
+
+  it('should return empty array for invalid input in sortTransactionsByDate', () => {
+    expect(sortTransactionsByDate(null)).toEqual([]);
+    expect(sortTransactionsByDate(undefined)).toEqual([]);
+    expect(sortTransactionsByDate(123)).toEqual([]);
+  });
+});
 });

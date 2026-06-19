@@ -4,13 +4,11 @@ import TotalRewards from '../components/TotalRewards.js';
 describe('TotalRewards component', () => {
   it('renders table headers and rows', () => {
     const data = [
-      { customerId: 'C001', firstName: 'Alice', totalRewardPoints: 120 },
-      { customerId: 'C002', firstName: 'Bob', totalRewardPoints: 95 },
+      { customerId: 'C001', customerName: 'Alice', totalRewardPoints: 120 },
+      { customerId: 'C002', customerName: 'Bob', totalRewardPoints: 95 },
     ];
 
-    const loading = false;
-
-    render(<TotalRewards data={data} loading={loading} />);
+    render(<TotalRewards data={data} />);
 
     expect(screen.getByText(/Customer Name/i)).toBeInTheDocument();
     expect(screen.getByText(/Reward Points/i)).toBeInTheDocument();

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import ErrorBoundary from '../components/ErrorBoundary.js';
+import ErrorBoundary from '../components/common/ErrorBoundary.js';
 
 const Bomb = () => {
   throw new Error('Test error');
@@ -52,4 +52,5 @@ describe('ErrorBoundary component', () => {
 
     errorSpy.mockRestore();
   });
+
 });

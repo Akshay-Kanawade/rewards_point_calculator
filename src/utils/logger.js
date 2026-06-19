@@ -2,6 +2,8 @@
 // Prevents console logs from being left in production code
 /* eslint-disable no-console */
 
+import dayjs from "dayjs";
+
 const LOG_LEVELS = {
   INFO: 'INFO',
   WARN: 'WARN',
@@ -15,7 +17,7 @@ const LOG_LEVELS = {
  * @returns {string} Formatted log message
  */
 const formatLog = (level, message) => {
-  const timestamp = new Date().toISOString();
+  const timestamp = dayjs().toISOString();;
   return `[${timestamp}] [${level}] ${message}`;
 };
 
@@ -53,10 +55,8 @@ const error = (message, errorObj = null) => {
   }
 };
 
-const logger = {
+export default {
   info,
   warn,
   error,
 };
-
-export default logger;

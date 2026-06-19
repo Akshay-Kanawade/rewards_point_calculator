@@ -9,15 +9,14 @@ import { calculateRewardPoints } from './rewardsCalculator.js';
  */
 const enhanceTransactionsWithPoints = (transactions) => {
   if (!Array.isArray(transactions)) {
-    throw new Error(
-      'Invalid transactions data. Expected an array of transactions.'
-    );
+    throw new Error('Invalid transactions data. Expected an array of transactions.');
   }
 
   return transactions.map((transaction) => ({
     ...transaction,
     rewardPoints:
-      transaction.rewardPoints ?? calculateRewardPoints(transaction.price),
+      transaction.rewardPoints ??
+      calculateRewardPoints(transaction.price),
   }));
 };
 

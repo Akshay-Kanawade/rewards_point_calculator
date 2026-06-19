@@ -1,7 +1,7 @@
 // UserMonthlyRewards component - Table showing monthly rewards per customer
 import PropTypes from 'prop-types';
 import { userMonthlyRewardsHeaders } from '../utils/tableHeaders.js';
-import CustomTable from './CustomTable.js';
+import CustomTable from './common/CustomTable.js';
 
 /**
  * UserMonthlyRewards component displays a table of customer rewards by month and year
@@ -10,14 +10,15 @@ import CustomTable from './CustomTable.js';
  * @returns {JSX.Element} Table of monthly rewards
  */
 const UserMonthlyRewards = ({ data = [], loading }) => {
+ 
   return (
-    <CustomTable
-      title="User Monthly Rewards"
-      columns={userMonthlyRewardsHeaders}
-      data={data}
-      noDataMessage="No monthly reward data available"
-      loading={loading}
-    />
+   <CustomTable
+             title="User Monthly Rewards"
+             columns={userMonthlyRewardsHeaders}
+             data={data}
+             noDataMessage="No monthly reward data available"
+             loading={loading}
+           />
   );
 };
 

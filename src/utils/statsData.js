@@ -11,6 +11,8 @@ export const buildStatsData = (transactions = []) => [
   },
   {
     label: 'Total Sales',
-    value: `$${transactions.reduce((sum, tx) => sum + tx.price, 0).toFixed(2)}`,
+    value: `$${transactions
+      .reduce((sum, tx) => sum + tx.price, 0)
+      .toFixed(2)}`,
   },
 ];

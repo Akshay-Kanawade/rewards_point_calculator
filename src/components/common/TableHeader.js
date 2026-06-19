@@ -1,7 +1,17 @@
-import PropTypes from 'prop-types';
-import { TableHead, TableRow, TableCell, TableSortLabel } from '@mui/material';
+import PropTypes from "prop-types";
+import {
+  TableHead,
+  TableRow,
+  TableCell,
+  TableSortLabel,
+} from "@mui/material";
 
-const TableHeader = ({ columns, order, orderBy, onSort }) => (
+const TableHeader = ({
+  columns,
+  order,
+  orderBy,
+  onSort,
+}) => (
   <TableHead>
     <TableRow>
       {columns.map((column) => (
@@ -9,8 +19,14 @@ const TableHeader = ({ columns, order, orderBy, onSort }) => (
           {column.sortable ? (
             <TableSortLabel
               active={orderBy === column.id}
-              direction={orderBy === column.id ? order : 'asc'}
-              onClick={() => onSort(column.id)}
+              direction={
+                orderBy === column.id
+                  ? order
+                  : "asc"
+              }
+              onClick={() =>
+                onSort(column.id)
+              }
             >
               {column.label}
             </TableSortLabel>
@@ -32,13 +48,16 @@ TableHeader.propTypes = {
       sortValue: PropTypes.func,
     })
   ).isRequired,
-  order: PropTypes.oneOf(['asc', 'desc']).isRequired,
+  order: PropTypes.oneOf([
+    "asc",
+    "desc",
+  ]).isRequired,
   orderBy: PropTypes.string,
   onSort: PropTypes.func.isRequired,
 };
 
 TableHeader.defaultProps = {
-  orderBy: '',
+  orderBy: "",
 };
 
 export default TableHeader;

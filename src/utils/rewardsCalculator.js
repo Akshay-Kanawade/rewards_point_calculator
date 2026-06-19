@@ -1,7 +1,7 @@
 // Pure functions for calculating reward points
 // No side effects, no mutations, no external dependencies
 
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 
 /**
  * Calculate reward points for a single purchase amount
@@ -36,8 +36,9 @@ const calculateRewardPoints = (purchaseAmount) => {
   if (wholeDollars <= 50) return 0;
   if (wholeDollars <= 100) return wholeDollars - 50;
 
-  return 100 - 50 + (wholeDollars - 100) * 2;
+  return (100 - 50) + (wholeDollars - 100) * 2;
 };
+
 
 const aggregatePointsByCustomer = (transactions) => {
   if (!Array.isArray(transactions) || transactions.length === 0) {
@@ -91,7 +92,7 @@ const aggregatePointsByCustomerMonth = (transactions) => {
         customerId: transaction.customerId,
         firstName: transaction.firstName,
         lastName: transaction.lastName,
-        month,
+        month : transaction.purchaseDate ? month : null,
         year,
         rewardPoints: transaction.rewardPoints,
       });

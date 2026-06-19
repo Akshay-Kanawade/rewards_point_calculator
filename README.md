@@ -5,7 +5,6 @@ A comprehensive React application for calculating and displaying customer reward
 ## Overview
 
 This is a fully functional React rewards program that demonstrates:
-
 - Pure functional programming principles (no class components, no mutations)
 - React hooks for state management (useState, useEffect)
 - Asynchronous data fetching with realistic API simulation
@@ -17,25 +16,21 @@ This is a fully functional React rewards program that demonstrates:
 ## Features
 
 ✅ **Reward Points Calculation**
-
 - 2 points per dollar spent over $100
 - 1 point per dollar spent between $50-$100
 - Proper handling of fractional amounts (using Math.floor)
 
 ✅ **Three Data Tables**
-
 1. **User Monthly Rewards** - Shows customer rewards by month and year
 2. **Total Rewards** - Shows cumulative rewards per customer
 3. **Transactions** - Shows all individual transactions with details
 
 ✅ **Data Visualization**
-
 - Summary statistics cards showing total transactions, reward points, and sales
 - Sorted data with proper date handling (newest first for transactions, by year/month for monthly rewards)
 - Responsive design that works on all screen sizes
 
 ✅ **Code Quality**
-
 - Pure functions with no side effects
 - No mutations (uses map, filter, reduce instead of forEach)
 - PropTypes validation for all components
@@ -44,7 +39,6 @@ This is a fully functional React rewards program that demonstrates:
 - Jest tests for all utility functions
 
 ✅ **Error Handling**
-
 - Graceful error states with user-friendly messages
 - Retry functionality for API failures
 - Input validation for all calculations
@@ -83,42 +77,34 @@ rewards/
 ## Installation & Setup
 
 ### Prerequisites
-
 - Node.js version 14 or higher
 - npm (comes with Node.js)
 
 ### Steps
 
 1. **Navigate to the project**
-
    ```bash
    cd rewards
    ```
 
 2. **Install dependencies** (if not already installed)
-
    ```bash
    npm install
    ```
 
 3. **Start the development server**
-
    ```bash
    npm start
    ```
-
    This opens the app at `http://localhost:3000`
 
 4. **Run tests**
-
    ```bash
    npm test
    ```
-
    Tests run in watch mode. Press `q` to quit.
 
 5. **Run ESLint**
-
    ```bash
    npm run lint
    ```
@@ -145,17 +131,17 @@ else (purchase > $100):
 
 ### Examples
 
-| Purchase Amount | Calculation               | Reward Points |
-| --------------- | ------------------------- | ------------- |
-| $25.00          | No purchase               | 0             |
-| $50.00          | 50 - 50 = 0               | 0             |
-| $75.00          | 75 - 50 = 25              | 25            |
-| $100.00         | 100 - 50 = 50             | 50            |
-| $100.20         | 50 + 2×0.2 = 50.4 → floor | 50            |
-| $100.40         | 50 + 2×0.4 = 50.8 → floor | 50            |
-| $100.50         | 50 + 2×0.5 = 51           | 51            |
-| $120.00         | 50 + 2×20 = 90            | 90            |
-| $150.00         | 50 + 2×50 = 150           | 150           |
+| Purchase Amount | Calculation | Reward Points |
+|---|---|---|
+| $25.00 | No purchase | 0 |
+| $50.00 | 50 - 50 = 0 | 0 |
+| $75.00 | 75 - 50 = 25 | 25 |
+| $100.00 | 100 - 50 = 50 | 50 |
+| $100.20 | 50 + 2×0.2 = 50.4 → floor | 50 |
+| $100.40 | 50 + 2×0.4 = 50.8 → floor | 50 |
+| $100.50 | 50 + 2×0.5 = 51 | 51 |
+| $120.00 | 50 + 2×20 = 90 | 90 |
+| $150.00 | 50 + 2×50 = 150 | 150 |
 
 **Key Point**: Fractional amounts over $100 are properly rounded down using `Math.floor()` to ensure accurate point calculation.
 
@@ -184,11 +170,9 @@ else (purchase > $100):
 ## Table Descriptions
 
 ### User Monthly Rewards Table
-
 **Purpose**: Shows how many points each customer earned in each month
 
 **Columns**:
-
 - Customer ID: Unique identifier for the customer
 - Name: Customer's full name
 - Month: Which month (January, February, December)
@@ -197,26 +181,22 @@ else (purchase > $100):
 
 **Sorting**: By year and month (newest first)
 
-![alt text](src/utils/images/image.png)
+![monthly-rewards](src/utils/images/monthly.png)
 
 ### Total Rewards Table
-
 **Purpose**: Shows cumulative points for each customer across all months
 
 **Columns**:
-
 - Customer Name: Customer's full name
 - Total Reward Points: Sum of all reward points
 
 **Sorting**: By total points (highest first)
-![alt text](src/utils/images/image-1.png)
+![total-rewards](src/utils/images/total.png)
 
 ### Transactions Table
-
 **Purpose**: Shows all individual transactions with detailed information
 
 **Columns**:
-
 - Transaction ID: Unique identifier for each transaction
 - Customer Name: Customer who made the purchase
 - Purchase Date: When the purchase was made
@@ -225,7 +205,8 @@ else (purchase > $100):
 - Reward Points: Points earned for this purchase
 
 **Sorting**: By purchase date (newest first)
-![alt text](src/utils/images/image-2.png)
+
+![transaction](src/utils/images/transaction.png)
 
 ## Testing
 
@@ -234,21 +215,18 @@ else (purchase > $100):
 The application includes comprehensive Jest tests for:
 
 #### Rewards Calculator Tests (`rewardsCalculator.test.js`)
-
 - All purchase amount scenarios
 - Edge cases (negative amounts, invalid input)
 - Aggregation functions
 - Monthly and customer grouping
 
 #### Data Aggregator Tests (`dataAggregator.test.js`)
-
 - Sorting functions
 - Filtering by month
 - Date formatting
 - Month name conversion
 
-#### App Component Tests
-
+#### App Component Tests 
 - Loading state rendering
 - Error state handling
 - Successful data loading and display
@@ -259,8 +237,7 @@ The application includes comprehensive Jest tests for:
 ```bash
 # Run all tests in watch mode
 npm test
-
-![alt text](src/utils/images/image-4.png)
+![testresult](image-1.png)
 
 # Run specific test file
 npm test rewardsCalculator.test.js
@@ -272,7 +249,7 @@ npm test -- --watchAll=false
 npm test -- --coverage --watchAll=false
 ```
 
-![alt text](src/utils/images/image-3.png)
+![alt text](src/utils/images/itest.png)
 
 ## Code Quality
 
@@ -289,7 +266,6 @@ npm run lint -- --fix
 ```
 
 **Key Rules**:
-
 - No console.log statements in production code
 - PropTypes required for all components
 - No unused variables (with exceptions for underscored variables)
@@ -367,7 +343,6 @@ The application simulates an asynchronous API call with:
 ## Troubleshooting
 
 ### Port 3000 Already in Use
-
 ```bash
 # On Windows, find and kill the process
 netstat -ano | findstr :3000
@@ -378,7 +353,6 @@ PORT=3001 npm start
 ```
 
 ### Module Not Found Errors
-
 ```bash
 # Clear node_modules and reinstall
 rm -r node_modules package-lock.json
@@ -386,7 +360,6 @@ npm install
 ```
 
 ### Build Failures
-
 ```bash
 # Clear cache and rebuild
 npm cache clean --force
@@ -396,7 +369,6 @@ npm run build
 ## Development Workflow
 
 1. **Create a feature branch**
-
    ```bash
    git checkout -b feature/your-feature-name
    ```
@@ -404,19 +376,16 @@ npm run build
 2. **Make changes** to source files
 
 3. **Run tests** to verify
-
    ```bash
    npm test -- --watchAll=false
    ```
 
 4. **Check code quality**
-
    ```bash
    npm run lint
    ```
 
 5. **Commit changes**
-
    ```bash
    git add .
    git commit -m "Description of changes"
@@ -430,7 +399,6 @@ npm run build
 ## Deployment
 
 ### Build for Production
-
 ```bash
 npm run build
 ```
@@ -438,7 +406,6 @@ npm run build
 This creates an optimized build in the `build/` directory.
 
 UI : [Rewards App](public/RewardsApp.pdf)
-
 ## Technologies Used
 
 - **React 19.2.7**: UI library
@@ -450,16 +417,16 @@ UI : [Rewards App](public/RewardsApp.pdf)
 
 ## Key Files and Their Purposes
 
-| File                         | Purpose                                     |
-| ---------------------------- | ------------------------------------------- |
-| `App.js`                     | Main component with state and data fetching |
-| `components/`                | Reusable UI components                      |
-| `utils/rewardsCalculator.js` | Core business logic for calculations        |
-| `utils/dataAggregator.js`    | Data sorting and filtering utilities        |
-| `utils/apiSimulator.js`      | Async API call simulation                   |
-| `utils/mockDataGenerator.js` | Generates sample transaction data           |
-| `utils/logger.js`            | Logging utility for debugging               |
-| `.eslintrc.json`             | Code quality configuration                  |
+| File | Purpose |
+|------|---------|
+| `App.js` | Main component with state and data fetching |
+| `components/` | Reusable UI components |
+| `utils/rewardsCalculator.js` | Core business logic for calculations |
+| `utils/dataAggregator.js` | Data sorting and filtering utilities |
+| `utils/apiSimulator.js` | Async API call simulation |
+| `utils/mockDataGenerator.js` | Generates sample transaction data |
+| `utils/logger.js` | Logging utility for debugging |
+| `.eslintrc.json` | Code quality configuration |
 
 ## Handling Edge Cases
 
@@ -483,12 +450,12 @@ The application handles:
 ## Author
 
 Created as a React learning project demonstrating:
-
 - Pure functional programming
 - React hooks
 - Testing best practices
 - Professional code organization
 - CSS styling and responsive design
+
 
 ## License
 

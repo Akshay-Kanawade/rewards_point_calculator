@@ -14,12 +14,10 @@ const sortTransactionsByDate = (transactions) => {
     return [];
   }
 
-  return transactions
-    .slice()
-    .sort(
-      (a, b) =>
-        dayjs(a.purchaseDate).valueOf() - dayjs(b.purchaseDate).valueOf()
-    );
+  return transactions.slice().sort((a, b) =>
+    dayjs(a.purchaseDate).valueOf() -
+    dayjs(b.purchaseDate).valueOf()
+  );
 };
 
 /**
@@ -33,12 +31,10 @@ const sortTransactionsByDateDesc = (transactions) => {
     return [];
   }
 
-  return transactions
-    .slice()
-    .sort(
-      (a, b) =>
-        dayjs(b.purchaseDate).valueOf() - dayjs(a.purchaseDate).valueOf()
-    );
+  return transactions.slice().sort((a, b) =>
+    dayjs(b.purchaseDate).valueOf() -
+    dayjs(a.purchaseDate).valueOf()
+  );
 };
 
 /**
@@ -47,17 +43,22 @@ const sortTransactionsByDateDesc = (transactions) => {
  * @param {Array} monthlyRewards
  * @returns {Array}
  */
-const sortByCustomerMonthDesc = (monthlyRewards) => {
+const sortByCustomerThenMonthDesc = (
+  monthlyRewards
+) => {
   if (!Array.isArray(monthlyRewards)) {
     return [];
   }
 
   return monthlyRewards.slice().sort((a, b) => {
-    const customerA = `${a.firstName} ${a.lastName}`;
-    const customerB = `${b.firstName} ${b.lastName}`;
+    const customerA =
+      `${a.firstName} ${a.lastName}`;
+    const customerB =
+      `${b.firstName} ${b.lastName}`;
 
     // Customer name ascending
-    const customerCompare = customerA.localeCompare(customerB);
+    const customerCompare =
+      customerA.localeCompare(customerB);
 
     if (customerCompare !== 0) {
       return customerCompare;
@@ -85,9 +86,15 @@ const sortByPointsDesc = (rewards) => {
   }
 
   return rewards.slice().sort((a, b) => {
-    const pointsA = a.rewardPoints ?? a.totalRewardPoints ?? 0;
+    const pointsA =
+      a.rewardPoints ??
+      a.totalRewardPoints ??
+      0;
 
-    const pointsB = b.rewardPoints ?? b.totalRewardPoints ?? 0;
+    const pointsB =
+      b.rewardPoints ??
+      b.totalRewardPoints ??
+      0;
 
     return pointsB - pointsA;
   });
@@ -99,7 +106,8 @@ const sortByPointsDesc = (rewards) => {
  * @param {Date|string} date - Date object or string
  * @returns {string} Formatted date string (MM/DD/YYYY)
  */
-const formatDate = (date) => dayjs(date).format('MM/DD/YYYY');
+const formatDate = (date) =>
+  dayjs(date).format('MM/DD/YYYY');
 
 /**
  * Get month name from month number
@@ -125,7 +133,7 @@ const monthNames = [
 export {
   sortTransactionsByDate,
   sortTransactionsByDateDesc,
-  sortByCustomerMonthDesc,
+  sortByCustomerThenMonthDesc,
   sortByPointsDesc,
   formatDate,
   monthNames,

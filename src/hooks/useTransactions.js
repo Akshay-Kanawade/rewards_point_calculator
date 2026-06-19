@@ -15,24 +15,34 @@ const useTransactions = () => {
       setLoading(true);
       setError(null);
 
-      logger.info('useTransactions hook mounted - fetching transaction data');
+      logger.info(
+        'useTransactions hook mounted - fetching transaction data'
+      );
 
       const data = await fetchTransactionData();
 
-      const enhancedData = enhanceTransactionsWithPoints(data);
+      const enhancedData =
+        enhanceTransactionsWithPoints(data);
 
       setTransactions(enhancedData);
 
-      logger.info(`Successfully loaded ${enhancedData.length} transactions`);
+      logger.info(
+        `Successfully loaded ${enhancedData.length} transactions`
+      );
     } catch (err) {
-      logger.error('Failed to load transaction data', err);
+      logger.error(
+        'Failed to load transaction data',
+        err
+      );
 
       setTransactions([]);
 
       setError(
         err instanceof Error
           ? err
-          : new Error('Failed to load transaction data')
+          : new Error(
+              'Failed to load transaction data'
+            )
       );
     } finally {
       setLoading(false);

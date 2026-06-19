@@ -1,6 +1,6 @@
 // Transactions component - Table showing all transactions with details
 import PropTypes from 'prop-types';
-import CustomTable from './CustomTable.js';
+import CustomTable from './common/CustomTable.js';
 import { transactionsHeaders } from '../utils/tableHeaders.js';
 /**
  * Transactions component displays a table of all transactions using CustomTable
@@ -9,6 +9,7 @@ import { transactionsHeaders } from '../utils/tableHeaders.js';
  * @returns {JSX.Element} Table of transactions
  */
 const Transactions = ({ transactions = [], loading }) => {
+ 
   return (
     <CustomTable
       title="Transactions"

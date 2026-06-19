@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import { TablePagination } from '@mui/material';
+import PropTypes from "prop-types";
+import { TablePagination } from "@mui/material";
 
 const TablePaginationSection = ({
   count,

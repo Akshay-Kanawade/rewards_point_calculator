@@ -42,7 +42,9 @@ describe('fetchTransactionData', () => {
       `${process.env.PUBLIC_URL}/transactions.json`
     );
 
-    expect(logger.info).toHaveBeenCalledWith('Fetching transaction data');
+    expect(logger.info).toHaveBeenCalledWith(
+      'Fetching transaction data'
+    );
 
     expect(logger.info).toHaveBeenCalledWith(
       `Loaded ${mockTransactions.length} transactions`
@@ -55,7 +57,9 @@ describe('fetchTransactionData', () => {
       status: 404,
     });
 
-    await expect(fetchTransactionData()).rejects.toThrow('HTTP Error: 404');
+    await expect(
+      fetchTransactionData()
+    ).rejects.toThrow('HTTP Error: 404');
 
     expect(logger.error).toHaveBeenCalledWith(
       'Failed to fetch transaction data',
@@ -68,7 +72,9 @@ describe('fetchTransactionData', () => {
 
     global.fetch.mockRejectedValue(fetchError);
 
-    await expect(fetchTransactionData()).rejects.toThrow('Network Error');
+    await expect(
+      fetchTransactionData()
+    ).rejects.toThrow('Network Error');
 
     expect(logger.error).toHaveBeenCalledWith(
       'Failed to fetch transaction data',
@@ -79,10 +85,14 @@ describe('fetchTransactionData', () => {
   it('throws when json parsing fails', async () => {
     global.fetch.mockResolvedValue({
       ok: true,
-      json: jest.fn().mockRejectedValue(new Error('Invalid JSON')),
+      json: jest
+        .fn()
+        .mockRejectedValue(new Error('Invalid JSON')),
     });
 
-    await expect(fetchTransactionData()).rejects.toThrow('Invalid JSON');
+    await expect(
+      fetchTransactionData()
+    ).rejects.toThrow('Invalid JSON');
 
     expect(logger.error).toHaveBeenCalledWith(
       'Failed to fetch transaction data',

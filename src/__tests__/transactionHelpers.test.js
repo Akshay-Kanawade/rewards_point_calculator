@@ -59,7 +59,7 @@ describe('transactionHelpers', () => {
     calculateRewardPoints.mockReturnValue(30);
 
     const input = [
-      { id: 1, price: 100 }, // should calculate
+      { id: 1, price: 100 },              // should calculate
       { id: 2, price: 200, rewardPoints: 80 }, // should NOT calculate
     ];
 

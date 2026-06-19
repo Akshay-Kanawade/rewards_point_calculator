@@ -100,13 +100,18 @@ const generateRandomPrice = (min, max) => {
  * @param {Date} endDate - End date
  * @returns {Date} Random date within range
  */
-const generateRandomDate = (startDate, endDate) => {
-  const time =
-    startDate.getTime() +
-    Math.random() * (endDate.getTime() - startDate.getTime());
-  return new Date(time);
-};
+const generateRandomDate = (
+  startDate,
+  endDate
+) => {
+  const start = startDate.valueOf();
+  const end = endDate.valueOf();
 
+  const randomTime =
+    start + Math.random() * (end - start);
+
+  return dayjs(randomTime);
+};
 /**
  * Generate mock transaction data
  * Creates 150-180 transactions spread across 3 months of 2026
@@ -121,34 +126,43 @@ const generateMockTransactions = () => {
   const months = [
     {
       name: 'April 2026',
-      start: new Date(2026, 3, 1),
-      end: new Date(2026, 3, 30),
+      start: dayjs('2026-04-01'),
+      end: dayjs('2026-04-30'),
     },
     {
       name: 'May 2026',
-      start: new Date(2026, 4, 1),
-      end: new Date(2026, 4, 31),
+      start: dayjs('2026-05-01'),
+      end: dayjs('2026-05-31'),
     },
     {
       name: 'June 2026',
-      start: new Date(2026, 5, 1),
-      end: new Date(),
+      start: dayjs('2026-06-01'),
+      end: dayjs(),
     },
   ];
 
   return CUSTOMERS.flatMap((customer) =>
     months.flatMap((month) =>
       Array.from({ length: 25 }, () => {
-        const price = Number(generateRandomPrice(25, 250).toFixed(2));
+        const price = Number(
+          generateRandomPrice(25, 250).toFixed(2)
+        );
 
-        const product = PRODUCTS[Math.floor(Math.random() * PRODUCTS.length)];
+        const product =
+          PRODUCTS[
+            Math.floor(
+              Math.random() * PRODUCTS.length
+            )
+          ];
 
         const purchaseDate = dayjs(
           generateRandomDate(month.start, month.end)
         ).format('MM-DD-YYYY');
 
         return {
-          id: `TXN${String(transactionId++).padStart(6, '0')}`,
+          id: `TXN${String(
+            transactionId++
+          ).padStart(6, '0')}`,
 
           customerId: customer.id,
           firstName: customer.firstName,
@@ -160,9 +174,10 @@ const generateMockTransactions = () => {
 
           price,
 
-          rewardPoints: calculateRewardPoints(price),
+          rewardPoints:
+            calculateRewardPoints(price),
 
-          month: month.name,
+          // month: month.name,
         };
       })
     )

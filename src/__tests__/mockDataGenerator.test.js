@@ -22,12 +22,8 @@ describe('generateMockTransactions', () => {
   it('generates transactions with valid prices and matching reward points', () => {
     const transactions = generateMockTransactions();
 
-    expect(transactions.every((tx) => tx.price >= 25 && tx.price <= 250)).toBe(
-      true
-    );
-    expect(transactions.every((tx) => tx.purchaseDate instanceof Date)).toBe(
-      false
-    );
+    expect(transactions.every((tx) => tx.price >= 25 && tx.price <= 250)).toBe(true);
+    expect(transactions.every((tx) => tx.purchaseDate instanceof Date)).toBe(false);
     expect(
       transactions.every(
         (tx) => tx.rewardPoints === calculateRewardPoints(tx.price)

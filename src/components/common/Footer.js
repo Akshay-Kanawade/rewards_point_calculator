@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo } from "react";
 
 const Footer = () => (
   <footer className="app-footer">
